@@ -1,45 +1,52 @@
-# TournamentTable
+# Библиотека для проведения жеребьевки соревнований
 
-TODO: Delete this and the text below, and describe your gem
+## Описание
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/tournament_table`. To experiment with that code, run `bin/console` for an interactive prompt.
+Данная библиотека предназначена для автоматического распределения участников соревнований по парам и построения сетки соревнований. Она позволяет организовать турниры, учитывая географическое расположение участников, чтобы минимизировать встречи участников из одного города на ранних стадиях турнира.
 
-## Installation
+## Функциональные требования
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+1. **Автоматическое распределение участников**: Библиотека должна автоматически распределять участников по парам для проведения соревнований.
+   
+2. **Минимизация встреч участников из одного города**: Участники из одного города должны встретиться как можно позже в турнире. Например, если участвует 16 человек и двое из Ростова-на-Дону, то они могут встретиться только в финале.
 
-Install the gem and add to the application's Gemfile by executing:
+3. **Ввод данных**: Библиотека должна принимать заявки в виде файлов формата Excel или CSV, содержащих информацию о участниках.
 
-```bash
-bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
-```
+4. **Визуализация турнирной сетки**: Дополнительно библиотека может визуализировать турнирную сетку, чтобы упростить восприятие результатов и структуры турнира.
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+**Установка**
 
-```bash
-gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
-```
+Для установки библиотеки выполните следующие шаги:
 
-## Usage
+1. Клонируйте репозиторий:
 
-TODO: Write usage instructions here
+   ```bash
+   git clone https://github.com/YanaGolovina/Tournament_table.git
 
-## Development
+2. Перейдите в директорию проекта:
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+    cd Tournament_table
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+3. Установите необходимые зависимости:
 
-## Contributing
+    pip install -r requirements.txt
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/tournament_table. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/tournament_table/blob/master/CODE_OF_CONDUCT.md).
+**Использование**
+Пример использования библиотеки:
 
-## License
+1. Создание экземпляра турнира
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+    tournament = Tournament.new
 
-## Code of Conduct
+2. Загрузка участников из файла
 
-Everyone interacting in the TournamentTable project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/tournament_table/blob/master/CODE_OF_CONDUCT.md).
-"# Tournament Table" 
-"# Tournament Table" 
+    tournament.load_participants('participants.csv')
+
+3. Проведение жеребьевки
+
+    tournament.draw_lots
+
+4. Визуализация турнирной сетки
+
+    tournament.visualize_bracket
+
