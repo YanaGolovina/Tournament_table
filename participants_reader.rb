@@ -1,11 +1,11 @@
 require 'csv'
-require 'gruff'
 
 # Чтение участников из CSV файла
-def read_participants(file_path)
+def read_participants(file_name)
   participants = []
-  CSV.foreach(file_path, headers: true) do |row|
-    participants << { name: row['name'], city: row['city'] }
+  CSV.foreach(file_name, headers: false) do |row|
+    participants << row
   end
   participants
 end
+
