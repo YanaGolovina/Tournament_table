@@ -1,16 +1,21 @@
-require_relative 'participants_reader'
-require_relative 'pair_creator'
-require_relative 'tournament_visualizer'
+# require_relative 'participants_reader.rb'
+# require_relative 'pair_creator.rb'
+# require_relative 'tournament_visualizer.rb'
+require './participants_reader.rb'
+require './pair_creator.rb'
+require './tournament_visualizer.rb'
 
 def main
-  file_path = 'participants.csv' # Укажите путь к вашему CSV файлу
-  participants = read_participants(file_path)
+  file_path = './test.csv' # Укажите путь к вашему CSV файлу
+  participants = read_participants_CSV(file_path)
+  # print(participants)
   pairs = create_pairs(participants)
-  visualize_tournament(pairs)
-
-  puts "Сформированные пары:"
+  # visualize_tournament(pairs)
+  # pairs
+  print("\nСформированные пары:\n")
   pairs.each do |pair|
-    puts "#{pair[0][:name]} (#{pair[0][:city]}) vs #{pair[1][:name]} (#{pair[1][:city]})"
+    print("#{pair[0][0]} (#{pair[0][1]}) vs #{pair[1][0]} (#{pair[1][1]})\n")
+    
   end
 end
 
