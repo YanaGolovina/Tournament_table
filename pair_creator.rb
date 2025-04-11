@@ -1,28 +1,37 @@
-def create_pairs(participants)
+def reverse_bits(num, num_bits)
+  result = ""
+  num_bits.times do |i|
+    result << num[i].to_s
+  end
+  return result.to_i(2)
+end
+
+def solve(participants)
+  ans = Array.new(participants.size)
+  participants.sort_by! { |p| p[1] }
+  num_bits = Math.log2(participants.size).ceil
+  for i in 0...participants.size
+    j = reverse_bits(i, num_bits)
+    ans[j] = participants[i]
+  end
+
   pairs = []
-  cities = Hash.new { |hash, key| hash[key] = [] } 
-
-  # Группируем участников по городам
-  participants.each do |participant|
-    cities[participant[:city]] << participant
+  for i in (0...participants.size).step(2);
+    pairs << [ans[i], ans[i+1]];
   end
-
-  # Создаем пары
-  while participants.size > 1
-    # Берем первого участника
-    participant = participants.shift
-    # Ищем пару, которая не из того же города
-    pair = participants.find { |p| p[:city] != participant[:city] }
-    
-    if pair
-      pairs << [participant, pair]
-      participants.delete(pair)
-    else
-      # Если нет пары, добавляем обратно
-      participants << participant
-      break
-    end
-  end
-
   pairs
 end
+
+# participants = [
+#   ['A1', 'A'],
+#   ['A2','A' ],
+#   ['B1','B' ],
+#   ['B2','B' ],
+#   ['C1','C' ],
+#   ['C2','C' ],
+#   ['D1','D' ],
+#   ['D2','D' ]
+# ]
+
+# pairs = solve(participants)
+# /print(pairs)
