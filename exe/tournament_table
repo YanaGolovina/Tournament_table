@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "tournament_table"
+
+if ARGV.empty?
+  puts "Usage: tournament_table <path_to_file>"
+  puts "Supported formats: .csv, .xlsx"
+  exit 1
+end
+
+file_path = ARGV[0]
+unless File.exist?(file_path)
+  puts "Error: File '#{file_path}' not found"
+  exit 1
+end
+
+begin
+  pairs = TournamentTable.create_tournament(file_path)
+rescue StandardError => e
+  puts "Error: #{e.message}"
+  exit 1
+end 

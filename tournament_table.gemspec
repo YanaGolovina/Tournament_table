@@ -8,17 +8,15 @@ Gem::Specification.new do |spec|
   spec.authors = ["Iana"]
   spec.email = ["yana.golovina.200222@mail.ru"]
 
-  spec.summary = "TODO: Write a short summary, because RubyGems requires one."
-  spec.description = "TODO: Write a longer description or delete this line."
-  spec.homepage = "TODO: Put your gem's website or public repo URL here."
+  spec.summary = "A Ruby gem for creating and managing tournament tables"
+  spec.description = "Tournament Table is a Ruby gem that helps organize tournaments by reading participant data from CSV or Excel files and creating balanced tournament pairs."
+  spec.homepage = "https://github.com/Timoor/Tournament_table"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.0.0"
 
-  spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
-
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "TODO: Put your gem's public repo URL here."
-  spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
+  spec.metadata["source_code_uri"] = "https://github.com/Timoor/Tournament_table"
+  spec.metadata["changelog_uri"] = "https://github.com/Timoor/Tournament_table/blob/main/CHANGELOG.md"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
@@ -33,8 +31,14 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  # Uncomment to register a new dependency of your gem
-  # spec.add_dependency "example-gem", "~> 1.0"
+  # Dependencies
+  spec.add_dependency "rubyXL", "~> 3.4"  # For reading Excel files
+  spec.add_dependency "csv", "~> 3.2"     # For reading CSV files
+  
+  # Development dependencies
+  spec.add_development_dependency "rake", "~> 13.0"
+  spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "rubocop", "~> 1.21"
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html

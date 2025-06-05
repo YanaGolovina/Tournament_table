@@ -52,3 +52,91 @@ ___
 
     tournament.visualize_bracket
 
+# Tournament Table
+
+A Ruby gem for creating and managing tournament pairings. This gem helps organize tournaments by reading participant data from CSV or Excel files and creating balanced tournament pairs based on player ratings.
+
+## Features
+
+- Read participant data from CSV and Excel (.xlsx) files
+- Create balanced tournament pairings based on player ratings
+- Handle odd number of participants with automatic "BYE" assignments
+- Pretty print tournament pairings
+
+## Installation
+
+Add this line to your application's Gemfile:
+
+```ruby
+gem 'tournament_table'
+```
+
+And then execute:
+
+```bash
+$ bundle install
+```
+
+Or install it yourself as:
+
+```bash
+$ gem install tournament_table
+```
+
+## Usage
+
+### Command Line
+
+The gem provides a command-line interface:
+
+```bash
+$ tournament_table path/to/your/file.csv
+# or
+$ tournament_table path/to/your/file.xlsx
+```
+
+### In Your Code
+
+```ruby
+require 'tournament_table'
+
+# Create tournament pairings from a CSV file
+pairs = TournamentTable.create_tournament('path/to/file.csv')
+
+# Create tournament pairings from an Excel file
+pairs = TournamentTable.create_tournament('path/to/file.xlsx')
+```
+
+### Input File Format
+
+#### CSV Format
+Your CSV file should have two columns:
+1. Player Name
+2. Player Rating
+
+Example:
+```csv
+John Doe,1500
+Jane Smith,1600
+Bob Johnson,1450
+```
+
+#### Excel Format
+Your Excel file should have two columns:
+1. Player Name
+2. Player Rating
+
+The first row is considered a header and will be skipped.
+
+## Development
+
+After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/Timoor/Tournament_table.
+
+## License
+
+The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
