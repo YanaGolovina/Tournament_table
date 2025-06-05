@@ -54,14 +54,15 @@ ___
 
 # Tournament Table
 
-A Ruby gem for creating and managing tournament pairings. This gem helps organize tournaments by reading participant data from CSV or Excel files and creating balanced tournament pairs based on player ratings.
+A Ruby gem for creating tournament pairings with a focus on separating players from the same city. This gem helps organize tournaments by ensuring that participants from the same city are placed as far apart as possible in the bracket, maximizing the chances they will only meet in later rounds.
 
 ## Features
 
-- Read participant data from CSV and Excel (.xlsx) files
-- Create balanced tournament pairings based on player ratings
+- Read participant data from CSV or Excel (.xlsx) files
+- Create balanced tournament pairings that maximize city separation
 - Handle odd number of participants with automatic "BYE" assignments
-- Pretty print tournament pairings
+- Beautiful bracket-style visualization
+- Ensures players from the same city meet as late as possible in the tournament
 
 ## Installation
 
@@ -112,21 +113,53 @@ pairs = TournamentTable.create_tournament('path/to/file.xlsx')
 #### CSV Format
 Your CSV file should have two columns:
 1. Player Name
-2. Player Rating
+2. City
 
 Example:
 ```csv
-John Doe,1500
-Jane Smith,1600
-Bob Johnson,1450
+Player Name,City
+Ivan Petrov,Moscow
+Anna Ivanova,Saint Petersburg
+Sergei Smirnov,Moscow
+Maria,Kiev
 ```
 
 #### Excel Format
-Your Excel file should have two columns:
+Your Excel file should have the same two columns:
 1. Player Name
-2. Player Rating
+2. City
 
 The first row is considered a header and will be skipped.
+
+### Output Format
+
+The tournament pairings are displayed in a beautiful bracket format:
+
+```
+=== Tournament Bracket ===
+
+Round 1:
+┌────────────────────────────────────────┐
+│          Ivan Petrov (Moscow)          │
+│                   vs                   │
+│    Anna Ivanova (Saint Petersburg)     │
+└────────────────────────────────────────┘
+```
+
+### City Separation Algorithm
+
+The gem uses a sophisticated algorithm to ensure players from the same city are separated:
+
+1. Players are first grouped by city
+2. Cities with more participants are handled first to ensure optimal spacing
+3. Players from the same city are distributed evenly throughout the bracket
+4. The pairing system ensures maximum possible distance between players from the same city
+5. When there's an odd number of players, a "BYE" is assigned optimally
+
+For example, if there are 4 players from Moscow in a 16-player tournament, they will be distributed so that:
+- They can only meet in later rounds
+- Each Moscow player is placed in a different quarter of the bracket
+- Similar distribution is applied to other cities based on their number of participants
 
 ## Development
 
